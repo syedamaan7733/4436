@@ -22,6 +22,14 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: [true, "must need code"],
     },
+    hobbies: {
+      type: [String],
+      default: [],
+    },
+    profileImg: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,
