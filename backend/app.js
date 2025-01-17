@@ -19,9 +19,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // Routes
-// app.use("/api/", (req, res) => {
-//   return res.json({ msg: "Things working fine" });
-// });
+app.get("/", (req, res) => {
+  return res.json({ msg: "Things working fine" });
+});
 app.use("/api/auth", authRoutes);
 
 // Error handling middleware
