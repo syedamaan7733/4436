@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People You May Know</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #333;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .connect-btn {
+            background-color: #fff;
+            color: #0073b1;
+            border: 2px solid #0073b1;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .connect-btn:hover {
+            background-color: #0073b1;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .connect-btn.clicked {
+            background-color: #ccc;
+            color: #333;
+            border-color: #999;
+            cursor: not-allowed;
+            animation: buttonClick 0.3s ease;
+        }
+
+        @keyframes buttonClick {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .connect-btn.request-sent {
+            background-color: #4caf50;
+            color: #fff;
+            border-color: #4caf50;
+        }
+
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>People You May Know</h1>
+        <div class="cards">
+            <!-- Card 1-8 -->
+            <div class="card">
+                <img src="https://c.pxhere.com/photos/08/7a/male_portrait_profile_social_media_cv_young_elegant_suit-459413.jpg!d" alt="Profile Picture" class="profile-pic">
+                <h3>Rajat Sinha</h3>
+                <p>Full Stack MERN Developer | Proficient in ...</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/a7/66/92/a766923c29305a16ce461b2ae54f4c68.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Aditya Raj</h3>
+                <p>Node JS | AWS | MongoDB | Express ...</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/profile-picture-caucasian-male-employee-posing-office-happy-young-worker-look-camera-workplace-headshot-portrait-smiling-190186649.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Pramod Kumar Jena</h3>
+                <p>Freelance Full Stack Developer | MERN Stack</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://media.istockphoto.com/photos/portrait-of-a-beautifull-smiling-man-picture-id500060262?k=6&m=500060262&s=612x612&w=0&h=dqPFs-C5bejj3tCI_pZFctS5xOHUtipA1FHPUU6aAwU=" alt="Profile Picture" class="profile-pic">
+                <h3>Aman Verma</h3>
+                <p>Java Developer @Sunbase | Masai School Alum</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://st2.depositphotos.com/4153545/8095/i/950/depositphotos_80951322-stock-photo-beautiful-young-indian-woman.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Kumud Joshi</h3>
+                <p>Cybersecurity Student | Bitcoin Cryptography</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://r2.erweima.ai/imgcompressed/img/compressed_daf556bf1a5fdf5253f8e312c9a52b6a.webp" alt="Profile Picture" class="profile-pic">
+                <h3>Sudev Kumar</h3>
+                <p>Software Developer By Heart</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://thumbs.dreamstime.com/z/portrait-young-happy-indian-woman-looking-camera-home-office-close-up-business-eastern-confident-male-professional-smiling-215162678.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Mansi Garg</h3>
+                <p>SDE-1 at Connect and Heal-CNH Care</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://femina.wwmindia.com/content/2020/sep/womenleadersroshninadarmalhotracredittoi1599565636.jpg" alt="Profile Picture" class="profile-pic">
+                <h3> Dua Shaikh</h3>
+                <p>Software Engineer @TechXSherpa</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+
+            <!-- Card 9-16 -->
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/25/48/31/25483183a26a96adcc2b5a4002eda6ca.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Riya Gupta</h3>
+                <p>Data Scientist | Python | Machine Learning</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.n0wpI28VCI5EHn6awWSnoQHaJ4&pid=Api&P=0&h=220" alt="Profile Picture" class="profile-pic">
+                <h3>Vikas Sharma</h3>
+                <p>Backend Developer | Django | API Integration</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://img.freepik.com/premium-photo/professional-indian-female-headshots-business-corporate-women_203363-204.jpg?w=2000" alt="Profile Picture" class="profile-pic">
+                <h3>Simran Kaur</h3>
+                <p>UI/UX Designer | Adobe XD | Figma</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://img.freepik.com/free-photo/young-male-entrepreneur-making-eye-contact-against-blue-background_662251-739.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Akash Jain</h3>
+                <p>DevOps Engineer | AWS | Kubernetes</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/25/1b/a6/251ba6f643943a4265e57ffa41f4feae.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Pooja Singh</h3>
+                <p>Frontend Developer | React | JavaScript</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.pqhMWMlPH9J9-HWqqhO6TwHaE8&pid=Api&P=0&h=220" alt="Profile Picture" class="profile-pic">
+                <h3>Rahul Mehta</h3>
+                <p>Blockchain Developer | Solidity | Ethereum</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://d18fr84zq3fgpm.cloudfront.net/nayra-rashahd-escort-in-new-delhi-10407034_original.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Neha Verma</h3>
+                <p>Product Manager | Agile | Scrum</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/1d/e1/ff/1de1ffbb54fac8a6293510650a4a1448.jpg" alt="Profile Picture" class="profile-pic">
+                <h3>Mohit Agarwal</h3>
+                <p>Full Stack Developer | Java | Angular</p>
+                <button class="connect-btn">Connect</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Select all connect buttons
+        const connectButtons = document.querySelectorAll('.connect-btn');
+
+        // Add click event to each button
+        connectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.textContent = 'Request Sent';
+                button.classList.remove('clicked'); // Reset animation
+                button.classList.add('request-sent'); // Change to request sent style
+                button.disabled = true; // Disable the button
+            });
+        });
+    </script>
+</body>
+</html>
