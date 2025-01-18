@@ -26,8 +26,8 @@ app.use("/api/auth", authRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something broke!" });
+  console.error("Error occurred:", err);
+  res.status(500).json({ error: err.message || "Internal Server Error" });
 });
 
 const PORT = process.env.PORT || 3000;

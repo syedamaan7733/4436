@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const userController = {
   register: async (req, res) => {
     try {
+      console.log(req.body);
+
       const { name, email, password, code } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = new User({ name, email, password: hashedPassword, code });
