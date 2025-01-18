@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+
+  <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+/* ---------------scroll bar part ---------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px; 
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #016423, #2575fc);
+  border-radius: 10px;
+  height: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8b2cc4, #1e5bd2);
+}
+
+
+
+/* --------------------------------------------------------content part---------- */
+.parent-container {
+  display: flex;
+  height: 100vh;
+  overflow: auto; 
+  color: white;
+  background-color: #000000;
+  height: 100vh;
+  
+}
+
+
+.left-side-bar {
+  position: sticky;
+  top: 0;
+  width: 14%;
+  height: 100vh;
+  /* background-color: #000000; */
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.left-side-bar  a{
+  width: 4rem;
+  height: 4rem;
+  text-decoration: none;
+  text-align: center;
+ color: white;
+  box-shadow:  0 0 20px 10px rgba(0,0,0,0.5);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s;
+
+}
+.left-side-bar  a .fa-regular , .fa-solid{
+  font-size: 30px;
+  line-height: 50px;
+  position: relative;
+  z-index: 5;
+  transition: color 0.5s;
+
+
+
+}
+.left-side-bar  a::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 90px;
+  left: 0;
+  background: linear-gradient(to bottom, #8b2cc4, #1e5bd2);
+  position: absolute;
+  transition: .5s;
+
+}
+
+.left-side-bar  a:hover::after{
+  top: 0;
+}
+
+.left-side-bar  a:hover .fa-regular , .fa-solid{
+  color: white;
+
+}
+
+.left-side-bar  a:hover .fa-regular , .fa-solid{
+  transform: translateY(-5px);
+}
+
+/* Middle Content */
+
+
+
+/* ------------------------------------------------------------------- */
+
+/* .middle-content-page{
+  width: 50%;
+} */
+.profile-page {
+max-width: 600px;
+margin: 0 auto;
+background-color: #1a1a1a;
+}
+
+.header .background-image {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+
+.profile-info {
+display: flex;
+align-items: center;
+
+}
+
+.profile-pic {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 3px solid #000;
+}
+
+.details {
+margin-left: 20px;
+}
+
+.details h1 {
+font-size: 24px;
+margin: 0;
+}
+
+.username {
+color: #888;
+}
+
+.bio {
+margin: 10px 0;
+line-height: 1.5;
+}
+
+.bio span {
+color: #1da1f2;
+}
+
+.work-link {
+color: #1da1f2;
+text-decoration: none;
+font-weight: bold;
+}
+
+.joined {
+color: #888;
+margin-top: 10px;
+}
+
+.stats {
+margin: 10px 20px;
+font-size: 14px;
+color: #888;
+}
+
+.posts {
+margin: 20px;
+
+}
+
+.post {
+background-color: #080707;
+padding: 15px;
+border-radius: 10px;
+border: 1px solid gray;
+
+}
+
+.post img {
+width: 90%;
+margin: 2rem;
+border-radius: 2rem;
+
+}
+
+.post h3 {
+margin: 10px 0;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+.parent-container  .right-side-page {
+  width: 38%;
+  background-color: rgb(0, 0, 0);
+}
+
+.parent-container  .right-side-page input{
+  width: 80%;
+  height: 3rem;
+  margin: .5rem;
+  background-color: #3a3b3f;
+  border: none;
+  font-size: 1.4rem;
+  border-radius: 3rem;
+ 
+  color: gray;
+  
+}
+
+.search-container {
+  position: relative;
+  margin: 1rem 0rem 0rem 2rem;
+
+ 
+}
+.search-container input:hover{
+  background: linear-gradient(to bottom, #8b2cc4, #1e5bd2);
+  cursor: pointer;
+  border-radius: 3rem;
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+  padding: 10px 10px 10px 50px; 
+  box-sizing: border-box;
+  border-radius: 2rem; 
+  font-size: 1.2rem;
+  outline: none; 
+  color: #333;
+}
+.search-icon {
+  position: absolute;
+  left: 1.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #555;
+}
+
+/* ------------------------------------right--- */
+
+.relevant-people, .premium-subscribe {
+  background-color: #000000;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 3rem;
+  border: 1px solid grey;
+ 
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.6rem;
+}
+
+.person-card {
+  display: flex;
+  align-items: center;
+}
+
+.subscribe-btn {
+  background-color:#1DA1F2;
+  color: #000;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.subscribe-btn:hover {
+  background-color: #ddd;
+}
+
+/* ------------------------------------------follow fololl------------- */
+
+
+.who-to-follow {
+background-color: #000000;
+border: 1px solid #2f3336;
+border-radius: 10px;
+width: 23rem;
+padding: 15px;
+margin: 2rem;
+}
+
+h2 {
+font-size: 18px;
+margin-bottom: 15px;
+}
+
+.profile {
+display: flex;
+align-items: center;
+margin-bottom: 15px;
+}
+
+.profile img {
+border-radius: 50%;
+width: 50px;
+height: 50px;
+margin-right: 10px;
+}
+
+.info {
+flex-grow: 1;
+}
+
+.name {
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+
+.badge {
+color: #8899a6;
+}
+
+.verified {
+color: #1da1f2;
+font-size: 14px;
+}
+
+.username {
+color: #8899a6;
+margin: 5px 0 0;
+font-size: 14px;
+}
+
+.follow-btn {
+background-color: #1da1f2;
+color: white;
+border: none;
+border-radius: 20px;
+padding: 5px 15px;
+font-size: 14px;
+cursor: pointer;
+}
+
+.follow-btn:hover {
+background-color: #1991da;
+}
+
+.show-more {
+display: block;
+color: #1da1f2;
+font-size: 14px;
+text-align: center;
+text-decoration: none;
+margin-bottom: 15px;
+}
+
+.show-more:hover {
+text-decoration: underline;
+}
+
+footer {
+font-size: 12px;
+color: #8899a6;
+text-align: center;
+}
+
+footer a {
+color: #8899a6;
+text-decoration: none;
+margin: 0 5px;
+}
+
+footer a:hover {
+text-decoration: underline;
+}
+
+footer p {
+margin: 5px 0;
+}
+
+/* -------------------------media quary-------------- */
+
+
+
+
+/* Media Query for Tablets (768px to 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+.parent-container {
+  flex-direction: column; /* Stack content vertically */
+  overflow: auto;
+}
+
+.left-side-bar {
+  position: relative;
+  width: 100%; /* Full width for tablets */
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: auto;
+}
+
+.left-side-bar a {
+  width: 2rem; /* Adjust size for icons */
+  height: 2rem;
+}
+
+.profile-page {
+  max-width: 90%; /* Reduce content width */
+  margin: 1rem auto;
+}
+
+.who-to-follow {
+  width: 100%;
+  margin: 1rem auto;
+  /* margin-left: 3rem; */
+}
+
+.right-side-page {
+  width: 100%; /* Full width for search container */
+}
+}
+
+/* Media Query for Mobile Devices (Up to 768px) */
+@media screen and (max-width: 768px) {
+.parent-container {
+  flex-direction: column; /* Stack everything vertically */
+  /* overflow: auto; */
+}
+
+.left-side-bar {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0.5rem;
+  align-items: center;
+  position: relative;
+  height: auto;
+
+
+}
+
+.left-side-bar a i{
+  font-size: 1rem;
+  /* background-color: #1da1f2; */
+}
+.fa-regular{
+font-size: 12px;
+
+}
+#notf , #msg , #gok, #prf{
+font-size: 1.4rem;
+}
+.profile-page {
+  max-width: 100%;
+  margin: 1rem 0;
+}
+
+.who-to-follow {
+  width: 100%; /* Full width for mobile */
+  margin: 0.5rem auto;
+  width: 18rem;
+  margin-left: 2rem;
+}
+
+.right-side-page {
+  width: 100%;
+}
+.right-side-page .search-container{
+width: 13rem;
+margin: auto 2rem;
+}
+.search-container input[type="text"] {
+  width: 100%; /* Adjust input width for mobile */
+  font-size: 1rem;
+}
+
+.subscribe-btn,
+.follow-btn {
+  padding: 6px 10px; /* Smaller button padding */
+  font-size: 12px;
+}
+.premium-subscribe{
+  width: 15rem;
+}
+
+
+}
+  </style>
+</head>
+
+<body>
+  <div class="parent-container">
+    <div class="child left-side-bar">
+
+      <a href=""><i class=" fa-solid fa-house "></i></a>
+      <a href="Home.html"><i class=" fa-solid fa-magnifying-glass"></i></a>
+      <a href="Search.html"><i id="notf" class="  fa-regular fa-bell"></i></a>
+      <a href="Notifications.html"><i id="msg" class="  fa-regular fa-envelope"></i></a>
+      <a href="Grok.html"><i id="gok" class="   fa-regular fa-seedling"></i></a>
+      <a href="profile.html"><i id="prf" class="  fa-regular fa-user"></i></a>
+      <a href="Editprofile.html"><i class="fa-solid fa-user-pen"></i></a>
+    </div>
+    <!-- -------------------------------------------left-page---------------------------- -->
+    <div class="child middle-content-page">
+
+
+      <div class="profile-page">
+        <!-- Header -->
+        <div class="header">
+          <img src="https://img.freepik.com/premium-photo/abstract-background-data-platform-white-nodes-connections-dark-gradient-background-light_1028639-2323.jpg" alt="Background"
+            class="background-image">
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-info">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZHpPWoj3PJ999wYv7PTZcf4F2NyI4cPRp8g&s" alt="Profile Picture"
+            class="profile-pic">
+          <div class="details">
+            <h1>⚡Social Synced</h1>
+            <p class="username">@Prachi Garg</p>
+            <p class="username">@Syedamaan ali</p>
+            <p class="bio">
+              Tech writer <span>@logrocket</span>, <span>@sitepointdotcom</span>, and <span>@refine_dev</span> 📚 <br>
+              Built DevTunes FM (1.1M+ listens) and DevQuizzes (900K+ answers) 🚀
+            </p>
+            <a href="https://bio.link/madza" class="work-link">All my work →</a>
+            <p class="joined">Joined July 2024</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+          <span>251 Following</span> · <span>551.6K Followers</span>
+        </div>
+
+        <!-- Posts Section -->
+        <div class="posts">
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <h3>Welcome to our soicalSynced World 🔥</h3>
+            <p>The power of the internet." 💡
+                "Connecting the world." 🔗
+                Humorous:👇</p>
+            <h3> Work Smarter & Do More 🔥</h3>
+            <p>Create Powerful Automation in Minutes 👇</p>
+          </div>
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20240522/pngtree-abstract-internet-connection-network-background-with-silhouette-of-business-team-image_15685393.jpg" alt="">
+            <p>Create Powerful Automation in Minutes 👇</p>
+            <h3>"Connected by Innovation, United by Technology" 🌍💡🔥</h3>
+            <p>In an era where digital transformation is reshaping the world, 
+                human connections remain at the heart of progress. 
+                This image symbolizes the fusion of technology and humanity—where
+                 glowing networks represent the invisible threads of data, 
+                 communication, and artificial intelligence binding us together.
+                  The silhouettes of people stand as a 
+                testament to collaboration, innovation, and the
+                 future of interconnected systems.👇</p>
+            <h3>🚀 The future is not just digital, it's human-driven. 🔗✨🔥</h3>
+          
+          </div>
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://miro.medium.com/v2/resize:fit:1024/1*HPAuB9Vu2bcRKuWz85NTZg.jpeg" alt="">
+            <p>Create Powerful Automation in Minutes 👇</p>
+            <h3>"Cloud dreaming." ☁️🔥</h3>
+            <p>"The future is in the cloud." 🚀
+                Technical/Informative:👇</p>
+            <h3>Exploring the world of cloud computing." ☁️💻
+                "Data security in the digital age." 🔒
+                "The power of cloud technology." ⚡
+                Humorous🔥</h3>
+          </div>
+
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20220529/pngtree-social-or-business-network-partnership-high-people-photo-image_13718426.jpg" alt="">
+            <p>Teamwork makes the dream work." 💪 👇</p>
+            <h3>"Our team is so connected, we can almost read each other's minds." 🤯 🔥</h3>
+          </div>
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230715/pngtree-exploring-the-world-of-iot-devices-and-network-connections-image_3885211.jpg" alt="">
+            <p>Create Powerful Automation in Minutes 👇</p>
+            <h3>"City of connections." 🌐🔥</h3>
+            <p> "The world is connected." 🌎👇</p>
+            <p>"Lost in the city grid." 😂
+                "My phone's battery life vs. the city's Wi-Fi." 🔋 vs. 📡
+                Inspirational" 🌎👇</p>
+          </div>
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://img.lovepik.com/photo/48008/6386.jpg_wh860.jpg" alt="">
+            <p> The digital world." 🌐
+                "Connected." 🔗👇</p>
+            <h3>"My phone is basically a portal to another dimension." 😂
+                "I'm not addicted to my phone, I'm just deeply connected." 😜 🔥</h3>
+
+
+            <p>"The Internet of Things." 💡👇</p>
+            <h3>"The future of technology." 🤖
+                Humorous:🔥</h3>
+            <p>"My brain trying to remember passwords vs. my cloud storage." 🧠 vs. ☁️ 👇</p>
+          </div>
+          <div class="post">
+            <p><strong>Pinned</strong></p>
+            <img src="https://thumbs.dreamstime.com/b/internet-informationstechnologie-75784736.jpg" alt="">
+            <p>The interconnected world." 🌐
+                👇</p>
+            <h3>"Global reach." 🌎
+                Technical/Informative:
+                🔥</h3>
+
+
+            <p>The power of the internet." 💡
+                "Connecting the world." 🔗
+                Humorous:
+                👇</p>
+            <h3>"My phone is basically a portal to the entire internet." 😂
+                🔥</h3>
+            <p> "I'm not addicted to the internet, I'm just deeply connected." 😜👇</p>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- -----------------------------------------------14th image--------------------- -->
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ---------------------------------right side -content------------------------ -->
+
+    <div class="child right-side-page">
+
+      <div class="search-container">
+
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+        <input type="text" placeholder="Search">
+
+      </div>
+
+
+      <div class="premium-subscribe">
+        <h3>Subscribe to Premium to write your own longer posts</h3>
+        <p>Write longer posts and apply text formatting such as bold and italic.</p>
+        <button class="subscribe-btn">Follow Me</button>
+      </div>
+
+
+      <!-- -----------------------who follow--------------------- -->
+
+      <div class="who-to-follow">
+        <h2>Who to follow</h2>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/573206276819140608/gKAusMeX_400x400.jpeg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Seb <span class="badge">🔮 ThisWeekInRe:</span> <span class="verified">✔</span></p>
+            <p class="username">@sebastienlorber</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1821380914200363008/ecRDQ-fk_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Shashi Lo <span class="verified">✔</span></p>
+            <p class="username">@shashiwhocodes</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1833509376528945157/5AeMNn9f_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Matthew Hope Eland</p>
+            <p class="username">@integerman</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+        <footer>
+          <p>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More...</a>
+          </p>
+          <p>©️ 2024 X Corp.</p>
+        </footer>
+      </div>
+      <!-- -------------------------------------------------------ljksdfksld -->
+
+      <div class="premium-subscribe">
+        <h3>Subscribe to Premium to write your own longer posts</h3>
+        <p>Write longer posts and apply text formatting such as bold and italic.</p>
+        <button class="subscribe-btn">Follow Me</button>
+      </div>
+
+      <!-- -------------------------------------------------------ljksdfksld -->
+
+      <div class="who-to-follow">
+        <h2>Who to follow</h2>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/573206276819140608/gKAusMeX_400x400.jpeg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Seb <span class="badge">🔮 ThisWeekInRe:</span> <span class="verified">✔</span></p>
+            <p class="username">@sebastienlorber</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1821380914200363008/ecRDQ-fk_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Shashi Lo <span class="verified">✔</span></p>
+            <p class="username">@shashiwhocodes</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1833509376528945157/5AeMNn9f_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Matthew Hope Eland</p>
+            <p class="username">@integerman</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+        <footer>
+          <p>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More...</a>
+          </p>
+          <p>©️ 2024 X Corp.</p>
+        </footer>
+      </div>
+
+      <div class="who-to-follow">
+        <h2>Who to follow</h2>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/573206276819140608/gKAusMeX_400x400.jpeg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Seb <span class="badge">🔮 ThisWeekInRe:</span> <span class="verified">✔</span></p>
+            <p class="username">@sebastienlorber</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1821380914200363008/ecRDQ-fk_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Shashi Lo <span class="verified">✔</span></p>
+            <p class="username">@shashiwhocodes</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1833509376528945157/5AeMNn9f_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Matthew Hope Eland</p>
+            <p class="username">@integerman</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+        <footer>
+          <p>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More...</a>
+          </p>
+          <p>©️ 2024 X Corp.</p>
+        </footer>
+      </div>
+
+      <!-- -------------------------------------------------------ljksdfksld -->
+
+      <div class="premium-subscribe">
+        <h3>Subscribe to Premium to write your own longer posts</h3>
+        <p>Write longer posts and apply text formatting such as bold and italic.</p>
+        <button class="subscribe-btn">Follow Me</button>
+      </div>
+
+
+
+      <!-- -------------------------------------------------------ljksdfksld -->
+      <div class="who-to-follow">
+        <h2>Who to follow</h2>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/573206276819140608/gKAusMeX_400x400.jpeg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Seb <span class="badge">🔮 ThisWeekInRe:</span> <span class="verified">✔</span></p>
+            <p class="username">@sebastienlorber</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1821380914200363008/ecRDQ-fk_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Shashi Lo <span class="verified">✔</span></p>
+            <p class="username">@shashiwhocodes</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1833509376528945157/5AeMNn9f_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Matthew Hope Eland</p>
+            <p class="username">@integerman</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+        <footer>
+          <p>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More...</a>
+          </p>
+          <p>©️ 2024 X Corp.</p>
+        </footer>
+      </div>
+
+      <div class="who-to-follow">
+        <h2>Who to follow</h2>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/573206276819140608/gKAusMeX_400x400.jpeg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Seb <span class="badge">🔮 ThisWeekInRe:</span> <span class="verified">✔</span></p>
+            <p class="username">@sebastienlorber</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1821380914200363008/ecRDQ-fk_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Shashi Lo <span class="verified">✔</span></p>
+            <p class="username">@shashiwhocodes</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <div class="profile">
+          <img src="https://pbs.twimg.com/profile_images/1833509376528945157/5AeMNn9f_400x400.jpg"
+            alt="Profile Picture">
+          <div class="info">
+            <p class="name">Matthew Hope Eland</p>
+            <p class="username">@integerman</p>
+          </div>
+          <button class="follow-btn">Follow</button>
+        </div>
+        <a href="#" class="show-more">Show more</a>
+        <footer>
+          <p>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Ads info</a>
+            <a href="#">More...</a>
+          </p>
+          <p>©️ 2024 X Corp.</p>
+        </footer>
+      </div>
+
+
+
+    </div>
+
+
+</body>
+
+</html>
