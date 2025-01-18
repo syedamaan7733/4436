@@ -5,31 +5,37 @@ const multer = require("multer");
 const { v2: cloudinary } = require("cloudinary");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
+const stream = require("stream");
+
 // Cloudinary configuration
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDNARY_NAME,
+  api_key: process.env.CLOUDNARY_API_KEY,
+  api_secret: process.env.CLOUDNARY_API_SECRET,
 });
 
 // Utility function for uploading to Cloudinary
-const uploadToCloudinary = async (fileBuffer, folder) => {
-  try {
-    const result = await cloudinary.uploader.upload_stream(
-      {
-        folder,
-      },
-      fileBuffer
+const uploadToCloudinary = (fileBuffer, folder) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder },
+      (error, result) => {
+        if (error) {
+          console.error("Error uploading to Cloudinary:", error);
+          return reject(new Error("Failed to upload image"));
+        }
+        resolve(result.secure_url);
+      }
     );
-    return result.secure_url;
-  } catch (error) {
-    console.error("Error uploading to Cloudinary:", error);
-    throw new Error("Failed to upload image");
-  }
+
+    // Write the buffer to the upload stream and finalize
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(fileBuffer);
+    bufferStream.pipe(uploadStream);
+  });
 };
 
 // Multer setup for storing image in memory
 const upload = multer({ storage: multer.memoryStorage() });
 
-
-module.exports = {uploadToCloudinary, upload}
+module.exports = { uploadToCloudinary, upload };
