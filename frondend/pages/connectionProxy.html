@@ -14,12 +14,6 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
-    </style>
-       <style>
-        .backdrop-blur {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
 
         .form-container {
             transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -56,20 +50,20 @@
     </style>
 </head>
 
-<body class="min-h-screen w-full flex items-center justify-center relative bg-gray-900">
-    <!-- Background with blur -->
+<body class="min-h-auto w-full flex items-center justify-center relative bg-gray-900">
+    <!-- Animated Background -->
     <div
-        class="absolute bg-animation inset-0 bg-cover bg-center bg-[url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg')] opacity-50 backdrop-blur">
+        class="absolute inset-0 bg-cover bg-center bg-[url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg')] opacity-50 backdrop-blur bg-animation">
     </div>
 
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
 
     <!-- Content -->
-    <div class="relative z-10 w-full max-w-md px-6 py-8">
+    <div class="relative z-10 h-auto w-full max-w-md px-6 py-8">
         <div class="bg-gray-800/80 backdrop-blur rounded-2xl shadow-2xl p-8">
             <!-- Login Form -->
-            <div id="loginForm" class="block">
+            <div id="loginForm" class="form-container active-form">
                 <h2 class="text-3xl font-bold text-center text-white mb-8">Welcome Back</h2>
                 <form onsubmit="handleLogin(event)" class="space-y-6">
                     <div class="space-y-2">
@@ -93,7 +87,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center gap-2">
+                        class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center gap-2 button-hover">
                         <i class="fas fa-sign-in-alt"></i>
                         Sign In
                     </button>
@@ -101,7 +95,7 @@
             </div>
 
             <!-- Registration Form -->
-            <div id="registrationForm" class="hidden">
+            <div id="registrationForm" class="form-container hidden-form">
                 <h2 class="text-3xl font-bold text-center text-white mb-8">Create Account</h2>
                 <form onsubmit="handleRegister(event)" class="space-y-6">
                     <div class="space-y-2">
@@ -145,7 +139,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center gap-2">
+                        class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition duration-200 flex items-center justify-center gap-2 button-hover">
                         <i class="fas fa-user-plus"></i>
                         Create Account
                     </button>
@@ -162,8 +156,27 @@
         </div>
     </div>
 
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const registrationForm = document.getElementById('registrationForm');
+            const toggleButton = document.getElementById('toggleButton');
 
-    <script src="../script/auth.js"></script>
+            if (loginForm.classList.contains('active-form')) {
+                loginForm.classList.remove('active-form');
+                loginForm.classList.add('hidden-form');
+                registrationForm.classList.remove('hidden-form');
+                registrationForm.classList.add('active-form');
+                toggleButton.textContent = "Already have an account? Sign in";
+            } else {
+                registrationForm.classList.remove('active-form');
+                registrationForm.classList.add('hidden-form');
+                loginForm.classList.remove('hidden-form');
+                loginForm.classList.add('active-form');
+                toggleButton.textContent = "Don't have an account? Sign up";
+            }
+        }
+    </script>
 </body>
 
 </html>
