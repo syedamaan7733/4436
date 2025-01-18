@@ -64,6 +64,7 @@
                 transform: translateY(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -79,7 +80,9 @@
 </head>
 
 <body class="h-screen flex items-center justify-center bg-gray-900 p-4">
-    <div class="absolute inset-0 bg-cover bg-center bg-[url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg')] opacity-50 backdrop-blur"></div>
+    <div
+        class="absolute inset-0 bg-cover bg-center bg-[url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg')] opacity-50 backdrop-blur">
+    </div>
     <div class="fixed inset-0 bg-black/50"></div>
 
     <div class="relative z-10 w-full max-w-2xl">
@@ -91,11 +94,14 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-700 border-4 border-purple-600 overflow-hidden mb-3">
-                            <img id="preview" src="/api/placeholder/400/400" alt="Profile" class="w-full h-full object-cover">
+                        <div
+                            class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-700 border-4 border-purple-600 overflow-hidden mb-3">
+                            <img id="preview" src="/api/placeholder/400/400" alt="Profile"
+                                class="w-full h-full object-cover">
                         </div>
                         <label class="cursor-pointer">
-                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+                            <span
+                                class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
                                     text-white px-3 py-1.5 rounded-lg transition duration-200 flex items-center gap-2 text-sm">
                                 <i class="fas fa-camera"></i>
                                 Change Photo
@@ -111,11 +117,9 @@
                                     <i class="fas fa-user"></i>
                                     Full Name
                                 </label>
-                                <input type="text" id="name" name="name" required
-                                    class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
+                                <input type="text" id="name" name="name" required class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
                                     text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                                    focus:ring-purple-500 transition" 
-                                    placeholder="Your Full Name">
+                                    focus:ring-purple-500 transition" placeholder="Your Full Name">
                                 <div class="error-message" id="nameError"></div>
                             </div>
 
@@ -124,11 +128,9 @@
                                     <i class="fas fa-envelope"></i>
                                     Email
                                 </label>
-                                <input type="email" id="email" name="email" required
-                                    class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
+                                <input type="email" id="email" name="email" required class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
                                     text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                                    focus:ring-purple-500 transition"
-                                    placeholder="Your Email">
+                                    focus:ring-purple-500 transition" placeholder="Your Email">
                                 <div class="error-message" id="emailError"></div>
                             </div>
                         </div>
@@ -138,11 +140,9 @@
                                 <i class="fas fa-info-circle"></i>
                                 Bio
                             </label>
-                            <textarea id="bio" name="bio" rows="2"
-                                class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
+                            <textarea id="bio" name="bio" rows="2" class="w-full px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
                                 text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                                focus:ring-purple-500 transition"
-                                placeholder="Tell us about yourself..."></textarea>
+                                focus:ring-purple-500 transition" placeholder="Tell us about yourself..."></textarea>
                             <div class="error-message" id="bioError"></div>
                         </div>
 
@@ -153,13 +153,10 @@
                             </label>
                             <div class="flex flex-col gap-2">
                                 <div class="flex gap-2">
-                                    <input type="text" id="hobbyInput" name="hobbyInput"
-                                        class="flex-1 px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
+                                    <input type="text" id="hobbyInput" name="hobbyInput" class="flex-1 px-3 py-1.5 bg-gray-700/50 rounded-lg border border-gray-600 
                                         text-white placeholder-gray-400 focus:outline-none focus:ring-2 
-                                        focus:ring-purple-500 transition"
-                                        placeholder="Add a hobby and press Enter">
-                                    <button type="button" id="addHobbyBtn"
-                                        class="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white 
+                                        focus:ring-purple-500 transition" placeholder="Add a hobby and press Enter">
+                                    <button type="button" id="addHobbyBtn" class="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white 
                                         rounded-lg transition duration-200 flex items-center justify-center">
                                         <i class="fas fa-plus"></i>
                                     </button>
@@ -172,15 +169,13 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <button type="submit"
-                                class="flex-1 py-2 px-4 bg-gradient-to-r from-blue-600 to-purple-600 
+                            <button type="submit" class="flex-1 py-2 px-4 bg-gradient-to-r from-blue-600 to-purple-600 
                                 hover:from-blue-700 hover:to-purple-700 text-white font-medium 
                                 rounded-lg transition duration-200 flex items-center justify-center gap-2">
                                 <i class="fas fa-save"></i>
                                 Save Profile
                             </button>
-                            <button type="button" id="resetBtn"
-                                class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white 
+                            <button type="button" id="resetBtn" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white 
                                 rounded-lg transition duration-200 flex items-center justify-center">
                                 <i class="fas fa-undo"></i>
                             </button>
@@ -192,6 +187,13 @@
     </div>
 
     <script>
+        const userAuth = JSON.parse(localStorage.getItem('userAuth'))
+
+        document.addEventListener("DOMContentLoaded", (e) => {
+            document.getElementById('name').value = userAuth.name
+            document.getElementById('email').value = userAuth.email
+        })
+
         class ProfileManager {
             constructor() {
                 this.hobbiesArray = [];
@@ -200,7 +202,7 @@
                 this.addHobbyBtn = document.getElementById('addHobbyBtn');
                 this.resetBtn = document.getElementById('resetBtn');
                 this.profilePicture = document.getElementById('profilePicture');
-                
+
                 this.initializeEventListeners();
                 this.loadStoredProfile();
             }
@@ -237,7 +239,7 @@
             updateHobbiesDisplay() {
                 const display = document.getElementById('hobbiesDisplay');
                 const hobbiesInput = document.getElementById('hobbies');
-                
+
                 display.innerHTML = this.hobbiesArray.map(hobby => `
                     <span class="hobby-tag">
                         ${this.escapeHtml(hobby)}
@@ -246,7 +248,7 @@
                         </span>
                     </span>
                 `).join('');
-                
+
                 hobbiesInput.value = this.hobbiesArray.join(',');
             }
 
@@ -261,7 +263,7 @@
 
             async handleSubmit(e) {
                 e.preventDefault();
-                
+
                 if (!this.validateForm()) {
                     return;
                 }
@@ -287,7 +289,7 @@
 
             validateForm() {
                 let isValid = true;
-                
+
                 // Name validation
                 const name = document.getElementById('name');
                 if (!name.value.trim()) {
@@ -348,10 +350,10 @@
                     document.getElementById('email').value = storedUser.email || '';
                     document.getElementById('bio').value = storedUser.bio || '';
                     if (storedUser.hobbies) {
-                        this.hobbiesArray = Array.isArray(storedUser.hobbies) ? 
-                            storedUser.hobbies : 
+                        this.hobbiesArray = Array.isArray(storedUser.hobbies) ?
+                            storedUser.hobbies :
                             storedUser.hobbies.split(',').filter(hobby => hobby.trim());
-                            this.updateHobbiesDisplay();
+                        this.updateHobbiesDisplay();
                     }
                     if (storedUser.profilePicture) {
                         document.getElementById('preview').src = storedUser.profilePicture;
@@ -401,16 +403,15 @@
 
             showNotification(message, type = 'success') {
                 const notification = document.createElement('div');
-                notification.className = `notification ${
-                    type === 'success' ? 'bg-green-500' : 'bg-red-500'
-                }`;
+                notification.className = `notification ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
+                    }`;
                 notification.innerHTML = `
                     <div class="flex items-center gap-2">
                         <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
                         <span>${this.escapeHtml(message)}</span>
                     </div>
                 `;
-                
+
                 document.body.appendChild(notification);
 
                 // Remove existing timeout if any
@@ -455,4 +456,5 @@
         });
     </script>
 </body>
+
 </html>
