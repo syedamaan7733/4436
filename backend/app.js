@@ -15,7 +15,7 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: "*", // Replace with your frontend URL
+    origin: ["http://127.0.0.1:5500", "https://4436.vercel.app"], // Replace with your frontend URL
     credentials: true, // Allow credentials
   })
 );
