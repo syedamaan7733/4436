@@ -13,7 +13,12 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // Replace with your frontend URL
+    credentials: true, // Allow credentials
+  })
+);
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
