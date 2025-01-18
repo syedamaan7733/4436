@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fdfc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 750px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+
+        .form-group,
+        .search-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .search-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group button {
+            margin-left: 10px;
+            background-color: #5a67d8;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .form-group button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .side{
+            display: flex;            
+        }
+        .form-group{
+            padding-right:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to EventConnect</h1>
+        <p>Connect with like-minded individuals at your event. Enter a participant's code or search by interests to start networking!</p>
+        <div class="side">
+            <div class="form-group">
+                <label for="code-input">Enter Code</label>
+                <div class="form-row">
+                    <input type="text" id="code-input" placeholder="Enter 4-digit code">
+                    <button>
+                        <img src="https://img.icons8.com/material-rounded/24/ffffff/qr-code.png" alt="QR Code Icon">
+                    </button>
+                </div>
+            </div>
+            <div class="search-group">
+                <label for="search-input">Search Participants</label>
+                <input type="text" id="search-input" placeholder="Search by name or interests">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
