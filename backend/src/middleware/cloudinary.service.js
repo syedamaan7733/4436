@@ -5,7 +5,6 @@ const multer = require("multer");
 const { v2: cloudinary } = require("cloudinary");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
-const { useLoaderData } = require("react-router-dom");
 // Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
