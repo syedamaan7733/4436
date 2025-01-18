@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .backdrop-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-900 py-12 px-4 sm:px-6">
+    <!-- Background with blur -->
+    <div class="absolute inset-0 bg-cover bg-center bg-[url('https://images.hdqwalls.com/download/graph-web-abstract-4k-hn-1920x1080.jpg')] opacity-50 backdrop-blur"></div>
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-2xl mx-auto">
+        <div class="bg-gray-800/80 backdrop-blur rounded-2xl shadow-2xl p-8">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-bold text-white">User Profile</h2>
+                <button onclick="window.location.href='userDetails.html'" 
+                        class="text-blue-400 hover:text-blue-300 transition">
+                    <i class="fas fa-external-link-alt mr-2"></i>View Details
+                </button>
+            </div>
+
+            <!-- Profile Picture Section -->
+            <div class="mb-8 flex flex-col items-center">
+                <div class="w-32 h-32 rounded-full bg-gray-700 border-4 border-purple-600 overflow-hidden mb-4">
+                    <img id="preview" src="/api/placeholder/400/400" alt="Profile" 
+                         class="w-full h-full object-cover">
+                </div>
+                <label class="cursor-pointer">
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+                                text-white px-4 py-2 rounded-lg transition duration-200 flex items-center gap-2">
+                        <i class="fas fa-camera"></i>
+                        Change Photo
+                        <input type="file" id="profilePicture" class="hidden" accept="image/*" onchange="previewImage(event)">
+                    </span>
+                </label>
+            </div>
+
+            <!-- Form Groups -->
+            <div class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-user"></i>
+                        Full Name
+                    </label>
+                    <input type="text" id="name" 
+                           class="w-full px-4 py-2 bg-gray-700/50 rounded-lg border border-gray-600 
+                                  text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+                                  focus:ring-purple-500 transition"
+                           placeholder="Your Full Name">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </label>
+                    <input type="email" id="email" 
+                           class="w-full px-4 py-2 bg-gray-700/50 rounded-lg border border-gray-600 
+                                  text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+                                  focus:ring-purple-500 transition"
+                           placeholder="Your Email">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-200 flex items-center gap-2">
+                        <i class="fas fa-heart"></i>
+                        Hobbies
+                    </label>
+                    <textarea id="hobbies" rows="4" 
+                              class="w-full px-4 py-2 bg-gray-700/50 rounded-lg border border-gray-600 
+                                     text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+                                     focus:ring-purple-500 transition"
+                              placeholder="Tell us about your hobbies..."></textarea>
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="saveProfile()" 
+                            class="flex-1 py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 
+                                   hover:from-blue-700 hover:to-purple-700 text-white font-medium 
+                                   rounded-lg transition duration-200 flex items-center justify-center gap-2">
+                        <i class="fas fa-save"></i>
+                        Save Profile
+                    </button>
+                    <button onclick="resetForm()" 
+                            class="px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white 
+                                   rounded-lg transition duration-200 flex items-center justify-center">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const preview = document.getElementById('preview');
+                preview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const hobbies = document.getElementById('hobbies').value;
+            const preview = document.getElementById('preview').src;
+
+            const user = {
+                name,
+                email,
+                hobbies,
+                profilePicture: preview
+            };
+
+            localStorage.setItem('userProfile', JSON.stringify(user));
+            showNotification('Profile saved successfully!');
+        }
+
+        function resetForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('hobbies').value = '';
+            document.getElementById('preview').src = '/api/placeholder/400/400';
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-y-0';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Load profile data if exists
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedUser = JSON.parse(localStorage.getItem('userProfile'));
+            if (storedUser) {
+                document.getElementById('name').value = storedUser.name || '';
+                document.getElementById('email').value = storedUser.email || '';
+                document.getElementById('hobbies').value = storedUser.hobbies || '';
+                if (storedUser.profilePicture) {
+                    document.getElementById('preview').src = storedUser.profilePicture;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
