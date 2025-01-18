@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Connection Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #ffffff;
+            background: url('https://i.pinimg.com/originals/26/00/c6/2600c63693a8ced199542c6eba67fee2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s;
+        }
+
+        header {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            animation: fadeInDown 1.5s;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid #444;
+            border-radius: 10px;
+            animation: fadeInUp 1.5s;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #6a11cb;
+            color: white;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #6a11cb;
+            font-size: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .features .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: zoomIn 1.5s;
+        }
+
+        .features .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .features .card h3 {
+            margin: 0 0 10px;
+            color: #ffffff;
+        }
+
+        .features .card p {
+            margin: 0;
+            color: #dddddd;
+        }
+
+        .features .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 10px;
+            animation: fadeInUp 1.5s;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Event Connection Platform</h1>
+        <p>Fostering meaningful interactions during social gatherings</p>
+    </header>
+
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#ai">AI Insights</a>
+        <a href="#security">Security</a>
+        <a href="#organizer">Organizer Tools</a>
+    </nav>
+
+    <div class="container">
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="features">
+                <div class="card">
+                    <img src="https://assets.qrcode-ai.com/index/generator/custom-social-media-qr-codes-other-shapes-instagram-wechat.webp" alt="Unique Code-Based Profiles">
+                    <h3>Unique Code-Based Profiles</h3>
+                    <p>Each participant receives a 4-digit code linked to their profile, including their name, bio, and interests.</p>
+                </div>
+                <div class="card">
+                    <img src="https://martech.org/wp-content/uploads/2017/02/people-social-network-connect-ss-1920.jpg" alt="Connection Requests">
+                    <h3>Connection Requests</h3>
+                    <p>Participants can send and accept connection requests to start meaningful conversations.</p>
+                </div>
+                <div class="card">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.2Ll09xrrJXvv_qBS3WI6CAHaET&pid=Api&P=0&h=220" alt="Date Booking">
+                    <h3>Date Booking</h3>
+                    <p>Book a date through the app at pre-negotiated partner venues for discounts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai">
+            <h2>AI-Powered Compatibility Insights</h2>
+            <img src="https://www.thestatesman.com/wp-content/uploads/2022/11/AI.jpg" alt="AI Compatibility Insights" style="width:100%; border-radius:10px; margin: 20px 0;">
+            <p>Our AI analyzes interests and bios to suggest connections and provides a compatibility score for better matchmaking.</p>
+        </section>
+
+        <section id="security">
+            <h2>User Verification and Privacy</h2>
+            <img src="https://img.freepik.com/premium-photo/ensuring-user-data-privacy-cybersecurity-through-secure-access-button-technology_983420-231326.jpg" alt="User Verification" style="width:100%; border-radius:10px; margin: 20px 0;">
+            <p>Ensuring secure user verification with ID and selfie validation. Control visibility of sensitive details for privacy.</p>
+        </section>
+
+        <section id="organizer">
+            <h2>Event Organizer Dashboard</h2>
+            <img src="https://idmetafora.com/img/mengenal-event-organizer-atau-eo---pengertian_thumb.jpg" alt="Organizer Dashboard" style="width:100%; border-radius:10px; margin: 20px 0;">
+            <p>Manage participants, monitor app usage, and gather analytics and feedback to improve future events.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 20px; background: black; color: white;">
+            <div style="flex: 1;">
+                <img src="" alt="Company Logo" style="width: 100px;">
+                <p style="margin: 5px 0;">SOCIAL SYNCED</p>
+            </div>
+            <div style="flex: 2; display: flex; justify-content: space-around;">
+                <div>
+                    <p><strong>WEEBLY THEMES</strong></p>
+                    <p>Pre-Sale FAQs</p>
+                    <p>Submit a Ticket</p>
+                </div>
+                <div>
+                    <p><strong>SERVICES</strong></p>
+                    <p>Theme Tweak</p>
+                </div>
+                <div>
+                    <p><strong>SHOWCASE</strong></p>
+                    <p>Widgetkit</p>
+                    <p>Support</p>
+                </div>
+                <div>
+                    <p><strong>ABOUT US</strong></p>
+                    <p>Contact Us</p>
+                    <p>Affiliates</p>
+                    <p>Resources</p>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 0.5px solid white; width: 90%; margin: auto;">
+        <div style="text-align: center; padding: 15px;">
+            <a href="#" style="margin: 0 10px;"><img src="https://tse4.mm.bing.net/th?id=OIP.MwgyOkcgT9Qt4t6ORobyIQHaHa&pid=Api&P=0&h=180" alt="Facebook" width="30"></a>
+            <a href="#" style="margin: 0 10px;"><img src="https://tse3.mm.bing.net/th?id=OIP.Ksuzi0iGYPQbiRLEnP5H4QHaHa&pid=Api&P=0&h=180" alt="Twitter" width="30"></a>
+            <a href="#" style="margin: 0 10px;"><img src="https://tse1.mm.bing.net/th?id=OIP.c0fEyHkqhw-DE8Pn_NcIbAHaHa&pid=Api&P=0&h=180" alt="RSS" width="30"></a>
+            <a href="#" style="margin: 0 10px;"><img src="https://tse2.mm.bing.net/th?id=OIP.ShdXlvHRWt-y4pikcToVswHaHx&pid=Api&P=0&h=220" alt="Google Plus" width="30"></a>
+            <a href="#" style="margin: 0 10px;"><img src="https://tse3.mm.bing.net/th?id=OIP.ERR24wL5OSz3GcXpG0XjZQHaHa&pid=Api&P=0&h=180" alt="Instagram" width="30"></a>
+            <p style="margin-top: 10px;">&copy; 2025 Event Connection Platform. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
