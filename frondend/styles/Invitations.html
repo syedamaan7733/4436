@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitations</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .first {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .first p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .second {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .second:last-child {
+            border-bottom: none;
+        }
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .text {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .text p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .text b {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .click {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border-radius: 20px;
+            font-size: 14px;
+            padding: 8px 15px;
+            border: none;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            border: 1px solid blueviolet;
+            color: blueviolet;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="first">
+            <p>Invitations</p>
+            <p>Show all</p>
+        </div>
+
+        <div class="second">
+            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team1.png" alt="Profile Picture">
+            <div class="text">
+                <p>Page IT Services and IT consulting</p>
+                <p><b>Khushi Singh</b> invited you to follow I Plus T Solution</p>
+            </div>
+            <div class="click">
+                <button>Ignore</button>
+                <button>Accept</button>
+            </div>
+        </div>
+
+        <div class="second">
+            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team3.png" alt="Profile Picture">
+            <div class="text">
+                <b>Sufal Bala</b>
+                <p>MERN STACK || Next.js || JavaScript ES6, TypeScript, Node.js, Express, EJS || Java ||...</p>
+            </div>
+            <div class="click">
+                <button>Ignore</button>
+                <button>Accept</button>
+            </div>
+        </div>
+
+        <div class="second">
+            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team1.png" alt="Profile Picture">
+            <div class="text">
+                <b>Rohit Sarkar</b>
+                <p>Cheif Sales officer</p>
+                <p>♾️ Vishwanath J and 6 other mutual connections</p>
+            </div>
+            <div class="click">
+                <button>Ignore</button>
+                <button>Accept</button>
+            </div>
+        </div>
+
+        <div class="second">
+            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team3.png" alt="Profile Picture">
+            <div class="text">
+                <p>Page IT Services and IT consulting</p>
+                <p><b>Khushi Singh</b> invited you to follow I Plus T Solution</p>
+            </div>
+            <div class="click">
+                <button>Ignore</button>
+                <button>Accept</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
