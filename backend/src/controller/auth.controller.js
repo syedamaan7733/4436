@@ -42,7 +42,7 @@ const userController = {
         httpOnly: true, // Prevents JavaScript access to the cookie
         secure: process.env.NODE_ENV === "production", // Only sends cookie over HTTPS in production
         sameSite: process.env.NODE_ENV === "production" ? "none" : "strict", // Protects against CSRF
-        maxAge: 24 * 60 * 60 * 1000, // Cookie expires in 24 hours (in milliseconds)
+        maxAge: 24 * 60 * 60 * 1000 * 30, // Cookie expires in 24 hours (in milliseconds)
       };
 
       // Send token as cookie

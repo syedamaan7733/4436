@@ -14,6 +14,7 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
   try {
     const { name, email, hobby, bio } = req.body;
     const userId = req.user.userId;
+    console.log(name);
 
     // Validate email if provided
     if (email && !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
