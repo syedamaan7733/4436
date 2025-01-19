@@ -19,7 +19,7 @@ app.use(
     origin: [
       "http://127.0.0.1:5500",
       "https://4436.vercel.app",
-      "https://4436-i4eo.vercel.app/",
+      "https://4436-i4eo.vercel.app",
     ], // Replace with your frontend URL
     credentials: true, // Allow credentials
   })
