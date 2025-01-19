@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Connect</title>
+    <!-- All links will be pasted here -->
+    <link rel="stylesheet" href="./styles/index.css" />
+
+    <!-- flowbite CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatingAnimation {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+
+      
+    }
+    @keyframes pulsate-fwd {0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1);} }
+
+    .pulsate-fwd-normal { 
+    animation: pulsate-fwd 1.9s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0s infinite normal both; 
+}
+
+    .animate-slide-down {
+      animation: slideInDown 0.8s ease-out;
+    }
+
+    .animate-fade-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .animate-scale {
+      animation: scaleIn 0.8s ease-out;
+    }
+
+    .animate-float {
+      animation: floatingAnimation 3s ease-in-out infinite;
+    }
+
+    .slide-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    .slide-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <style>
+    /* General Styles */
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(90deg, #e3ffe7, #d9e7ff);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card-content p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .card-content .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #007bff;
+    }
+
+    .card-content button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .card-content button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Animation for Booked */
+    .booked {
+      animation: fadeOut 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <body>
+    <!--  -->
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Work below here -->
+
+    <nave
+      class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="px-3 py-3 lg:px-5 lg:pl-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center justify-start rtl:justify-end">
+            <button
+              data-drawer-target="logo-sidebar"
+              data-drawer-toggle="logo-sidebar"
+              aria-controls="logo-sidebar"
+              type="button"
+              class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            >
+              <span class="sr-only">Open sidebar</span>
+              <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                ></path>
+              </svg>
+            </button>
+            <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+              <img
+                src="../assets/logo.jpg"
+                class="w-10 rounded-3xl me-3"
+                alt="FlowBite Logo"
+              />
+              <span
+                class="self-center text-xl tracking-[2px] font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
+                >SocialSynced</span
+              >
+            </a>
+          </div>
+          <div id="auth-check" class="flex items-center"></div>
+        </div>
+      </div>
+    </nave>
+
+    <aside
+      id="logo-sidebar"
+      class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      aria-label="Sidebar"
+    >
+      <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <ul class="space-y-2 font-medium">
+          <li>
+            <a
+              href="../index.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 22 21"
+              >
+                <path
+                  d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
+                />
+                <path
+                  d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
+                />
+              </svg>
+              <span class="ms-3">Home</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="./network.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"
+                />
+              </svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Invitation</span>
+              <span
+                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"
+                >3</span
+              >
+            </a>
+          </li>
+          <li>
+            <a
+              href="./profilepage.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 18"
+              >
+                <path
+                  d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
+                />
+              </svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="./connection.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 20"
+              >
+                <path
+                  d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"
+                />
+              </svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Let Connects</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="./places.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 18 16"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                />
+              </svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Discover Places</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="./login.html"
+              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"
+                />
+                <path
+                  d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z"
+                />
+                <path
+                  d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z"
+                />
+              </svg>
+              <span class="flex-1 ms-3 whitespace-nowrap">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="p-1 sm:ml-64 relative">
+      <div id="contents" class="p-['10px'] dark:border-gray-700 mt-14">
+        <div
+          class="items-center justify-center mt-[86px] h-auto min-h-40 mb-4 rounded bg-gray-50 dark:bg-gray-800"
+        >
+          <div class="container">
+            <h1 class=" text-4xl pulsate-fwd-normal font-bold mb-10 bg-gradient-to-l from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text">Explore Top Places</h1>
+            <div class="cards">
+              <!-- 20 Cards -->
+              <div class="card">
+                <img
+                  src="https://tse1.mm.bing.net/th?id=OIP.03dvLyeVH9HJdudo3JliNAHaDt&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Goa Beach</h3>
+                  <p>Relax on the serene beaches of Goa.</p>
+                  <p class="price">$400</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://www.shimlamanalitravel.com/jap/media/gallery/manali.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Manali Hills</h3>
+                  <p>Explore the snow-covered peaks of Manali.</p>
+                  <p class="price">$350</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://www.rajasthantourdriver.com/wp-content/uploads/2019/03/hawamahal4.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Jaipur City</h3>
+                  <p>Discover the cultural richness of Jaipur.</p>
+                  <p class="price">$300</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <!-- Add more places dynamically -->
+              <div class="card">
+                <img
+                  src="https://lp-cms-production.imgix.net/2019-06/384e10f39ebc6fab9b991467541ce8ed-dal-lake.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Kashmir Valley</h3>
+                  <p>The city of lakes and royal heritage.</p>
+                  <p class="price">$350</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse1.mm.bing.net/th?id=OIP.gffR2c28-E2ki1Lc7Yc-ngHaFL&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Udaipur</h3>
+                  <p>Heaven on Earth with pristine beauty.</p>
+                  <p class="price">$500</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://i.pinimg.com/originals/90/c1/9a/90c19a3547b6685daffb88c05ce8d96f.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Leh Ladakh</h3>
+                  <p>The land of high passes and adventure.</p>
+                  <p class="price">$600</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://wallpaperset.com/w/full/4/7/e/92320.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Kerala Backwaters</h3>
+                  <p>Serene waters and lush greenery.</p>
+                  <p class="price">$400</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse2.mm.bing.net/th?id=OIP.IJwRjuXwzlAX8msMt2ZqRAHaEU&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Andaman Islands</h3>
+                  <p>Crystal-clear waters and coral reefs.</p>
+                  <p class="price">$700</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse1.mm.bing.net/th?id=OIP.30oye9_FYwmEBQRcVGOAWAHaEK&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Darjeeling</h3>
+                  <p>The queen of hills and tea plantations.</p>
+                  <p class="price">$300</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse2.mm.bing.net/th?id=OIP.wqxQ1JGc5TfE3pSPyQFBQwHaEK&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Rishikesh</h3>
+                  <p>The yoga capital and spiritual hub.</p>
+                  <p class="price">$250</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse4.mm.bing.net/th?id=OIP.NQNVpfrOUndJkI__K3OHPgHaEp&pid=Api&P=0&h=220"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Agra</h3>
+                  <p>Visit the Taj Mahal and Mughal history.</p>
+                  <p class="price">$200</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://cdn1.goibibo.com/voy_ing/t_fs/himachal-pradesh-shimla-147616947938o.jpeg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Shimla</h3>
+                  <p>A picturesque hill station in Himachal.</p>
+                  <p class="price">$300</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://karnatakatourism.org/wp-content/uploads/2020/10/Mysore-Palace-with-Lights.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Mysore</h3>
+                  <p>Explore palaces and vibrant culture.</p>
+                  <p class="price">$280</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://2.bp.blogspot.com/-TLQt42s2Frk/Wjuw1hurkQI/AAAAAAAAA0w/ZEpUpxba69obKA_sNODzRY0PGfJcCwTIgCEwYBhgL/s1600/Golden%2BTemple%2BCoorg.JPG"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Coorg</h3>
+                  <p>The Scotland of India with coffee estates.</p>
+                  <p class="price">$330</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://images.freeimages.com/images/large-previews/722/palace-in-ranthambore-rajasthan-1578417.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Ranthambore</h3>
+                  <p>Wildlife safari and tiger reserve.</p>
+                  <p class="price">$500</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://cdn.audleytravel.com/1490/1064/79/1340501-amritsars-golden-temple.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Amritsar</h3>
+                  <p>Golden Temple and cultural vibrance.</p>
+                  <p class="price">$270</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse2.mm.bing.net/th?id=OIP.7RgG8E58PfgB0UVU-R1tRwHaE8&pid=Api&P=0&h=180"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Hyderabad</h3>
+                  <p>The city of pearls and royal cuisine.</p>
+                  <p class="price">$350</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://img.freepik.com/premium-photo/varanasi-city-with-ancient-architecture_941600-26460.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Varanasi</h3>
+                  <p>The spiritual capital of India.</p>
+                  <p class="price">$300</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://wallpaperaccess.com/full/6051824.jpg"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Ahemdabad</h3>
+                  <p>the most populous city in the Indian state of Gujarat.</p>
+                  <p class="price">$100</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+              <div class="card">
+                <img
+                  src="https://tse1.mm.bing.net/th?id=OIP.cC8HFmHw15OD66jsM2ggMQHaDt&pid=Api&P=0&h=220"
+                  alt="Place Image"
+                />
+                <div class="card-content">
+                  <h3>Abu Dhabi</h3>
+                  <p>
+                    Abu Dhabi is the capital city of the United Arab Emirates..
+                  </p>
+                  <p class="price">$700</p>
+                  <button class="book-now">Book Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <script>
+      document.querySelectorAll(".book-now").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.textContent = "Booked";
+          button.classList.add("booked");
+          button.disabled = true;
+          setTimeout(() => {
+            button.classList.remove("booked");
+          }, 1000);
+        });
+      });
+    </script>
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections with scroll reveal
+      document.querySelectorAll(".slide-in-section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Smooth scroll behavior for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+    <script src="./script/condition.js"></script>
+    <script src="./script//Scanner.js"></script>
+
+    <!-- ------------------------------------------------------------------- -->
+    <!-- To use flowbite copy thoses two link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <!-- ---------------------------------------------------- -->
+  </body>
+</html>

@@ -307,8 +307,10 @@
                 for (let [key, value] of formData.entries()) {
                     console.log(key, value);
                 }
+                window.location.href = "../index.html"
 
                 try {
+
                     // Save the profile using the saveProfile method
                     const response = await this.saveProfile(formData);
 
