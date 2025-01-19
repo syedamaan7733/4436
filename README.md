@@ -1,10 +1,14 @@
-SocialSynced
+##SocialSynced
 
-Website URL: SocialSynced
+Website URL: [SocialSynced](https://4436-i4eo.vercel.app/index.html)
+
+credentials: 
+email: prachi1@gmail.com
+password: secret0000
 
 SocialSynced is a web platform designed to connect people through their shared interests and help them plan memorable dates. Whether you want to network, make new friends, or find someone special, SocialSynced provides a space for meaningful connections.
 
-Features
+#Features
 
 User Authentication: Secure login and registration system.
 
@@ -20,35 +24,35 @@ Places Recommendation: Get suggestions for places to visit.
 
 Project Structure
 
-Backend
+#Backend
 
 The backend is implemented in Node.js and handles user authentication, profile management, and other core functionalities.
 
 backend/
 ├── src/
-│   ├── config/
-│   │   └── database.js      # Database configuration file
-│   ├── controller/
-│   │   └── auth.controller.js  # Controller for authentication logic
-│   ├── middleware/
-│   │   ├── auth.js          # Middleware for authentication
-│   │   └── cloudinary.service.js  # Service for image uploads
-│   ├── models/
-│   │   ├── Profile.js       # Schema for user profiles
-│   │   └── User.js          # Schema for user data
-│   ├── routes/
-│   │   ├── auth.route.js    # Routes for authentication
-│   │   └── profile.route.js # Routes for profile operations
-├── app.js                   # Main entry point for the backend
-├── package.json             # Backend dependencies and scripts
-├── package-lock.json        # Backend lock file
-├── vercel.json              # Deployment configuration for Vercel
+│ ├── config/
+│ │ └── database.js # Database configuration file
+│ ├── controller/
+│ │ └── auth.controller.js # Controller for authentication logic
+│ ├── middleware/
+│ │ ├── auth.js # Middleware for authentication
+│ │ └── cloudinary.service.js # Service for image uploads
+│ ├── models/
+│ │ ├── Profile.js # Schema for user profiles
+│ │ └── User.js # Schema for user data
+│ ├── routes/
+│ │ ├── auth.route.js # Routes for authentication
+│ │ └── profile.route.js # Routes for profile operations
+├── app.js # Main entry point for the backend
+├── package.json # Backend dependencies and scripts
+├── package-lock.json # Backend lock file
+├── vercel.json # Deployment configuration for Vercel
 
-Frontend
+#Frontend
 
 The frontend is built with HTML, CSS, and JavaScript, providing an intuitive and responsive user interface.
 
-frontend/
+`frontend/
 ├── assets/
 │   └── logo.jpg            # Logo used in the project
 ├── pages/
@@ -72,13 +76,13 @@ frontend/
 ├── Invitations.html         # Invitation page
 ├── index.css                # Main stylesheet
 ├── index.html               # Main entry point for the frontend
-├── README.md                # Project documentation
+├── README.md                # Project documentation`
 
-Deployment
+#Deployment
 
 The project is deployed on Vercel, ensuring a smooth and reliable user experience. The deployment configuration can be found in vercel.json.
 
-How to Run the Project Locally
+#How to Run the Project Locally
 
 Prerequisites
 
@@ -86,7 +90,7 @@ Node.js installed on your system
 
 A MongoDB instance for the database
 
-Steps
+#Steps
 
 Clone the repository:
 
@@ -103,11 +107,11 @@ npm start or npm run dev
 
 Open the frontend folder and launch the index.html file in your browser.
 
-Contributing
+#Contributing
 
 We welcome contributions to improve SocialSynced! Feel free to submit issues or pull requests for enhancements or bug fixes.
 
-Walkthrough Picture
+#Walkthrough Picture
 
 ![Login Page for Authentication](image.png)
 ![Landing Page](image-1.png)
