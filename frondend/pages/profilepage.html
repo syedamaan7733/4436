@@ -7,9 +7,11 @@
   <title>Event Connect</title>
   <!-- All links will be pasted here -->
   <link rel="stylesheet" href="./styles/index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <!-- flowbite CDN -->
   <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/90b32dcee6.js" crossorigin="anonymous"></script>
 </head>
 <style>
   * {
@@ -692,12 +694,44 @@
 
               <!-- Profile Info -->
               <div class="profile-info">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZHpPWoj3PJ999wYv7PTZcf4F2NyI4cPRp8g&s"
+                <img id="userImg"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZHpPWoj3PJ999wYv7PTZcf4F2NyI4cPRp8g&s"
                   alt="Profile Picture" class="profile-pic">
                 <div class="details">
-                  <h1>⚡Social Synced</h1>
-                  <p class="username">@Prachi Garg</p>
-                  <p class="username">@Syedamaan ali</p>
+                  <div class="flex  justify-between items-center pr-5 ">
+                    <h1 id="user-name">⚡Social Synced</h1>
+
+
+                    <div class="relative min-h-auto flex items-center justify-center">
+                      <!-- QR Code Button -->
+
+                      <i id="showQrButton" class="fa-solid fa-qrcode "></i>
+
+                      <!-- Popup Overlay -->
+                      <div id="popup"
+                        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                        <!-- Popup Content -->
+                        <div class="bg-white p-8 rounded-xl shadow-2xl flex flex-col items-center gap-6 relative">
+                          <!-- Close Button -->
+                          <button id="closeButton" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round"
+                              strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                              <path d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                          </button>
+
+                          <!-- QR Code Container -->
+                          <div id="qrcode" class="w-64 h-64"></div>
+
+                          <!-- 4-Digit Code -->
+                          <div id="codeDisplay" class="text-2xl text-stone-800 font-bold tracking-wider"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <p class="username" id="user-handle">@Syedamaan ali</p>
                   <p class="bio">
                     Tech writer <span>@logrocket</span>, <span>@sitepointdotcom</span>, and <span>@refine_dev</span> 📚
                     <br>
@@ -1106,6 +1140,70 @@
 
 
     <!-- ------------------------------------------------------------------ -->
+    <script>
+      const userAuth = JSON.parse(localStorage.getItem('userAuth'))
+
+      const userHandle = document.getElementById("user-handle")
+      const userName = document.getElementById("user-name")
+      const userImg = document.getElementById("userImg")
+
+      document.addEventListener("DOMContentLoaded", (e) => {
+        userHandle.innerText = `@${userAuth.email.split("@")[0]}`
+        userName.innerText = userAuth.name
+        userImg.src = userAuth.profileImg
+      })
+
+    </script>
+
+    <script>
+      // Generate random 4-digit code
+      function generateCode() {
+        const userAuth = JSON.parse(localStorage.getItem('userAuth'))
+        return userAuth.code
+      }
+
+      // Initialize variables
+      const popup = document.getElementById('popup');
+      const showQrButton = document.getElementById('showQrButton');
+      const closeButton = document.getElementById('closeButton');
+      const qrcodeDiv = document.getElementById('qrcode');
+      const codeDisplay = document.getElementById('codeDisplay');
+      let qrcode = null;
+
+      // Show popup and generate new QR code
+      showQrButton.addEventListener('click', () => {
+        popup.classList.remove('hidden');
+
+        // Generate new code
+        const code = generateCode();
+        codeDisplay.textContent = code;
+
+        // Clear previous QR code
+        qrcodeDiv.innerHTML = '';
+
+        // Generate new QR code
+        qrcode = new QRCode(qrcodeDiv, {
+          text: code,
+          width: 256,
+          height: 256,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      });
+
+      // Hide popup
+      closeButton.addEventListener('click', () => {
+        popup.classList.add('hidden');
+      });
+
+      // Close popup when clicking outside
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.add('hidden');
+        }
+      });
+    </script>
     <script src="./script/condition.js"></script>
 
 

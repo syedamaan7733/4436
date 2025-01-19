@@ -1,1 +1,103 @@
-<a href="login.html">Logout</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-100">
+    <div class="relative min-h-screen flex items-center justify-center">
+        <!-- QR Code Button -->
+        <button
+            id="showQrButton"
+            class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex items-center gap-2"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
+                <rect width="14" height="14" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M7 17h.01"/><path d="M17 7h.01"/><path d="M17 17h.01"/>
+            </svg>
+            <span class="text-gray-700">Show QR Code</span>
+        </button>
+
+        <!-- Popup Overlay -->
+        <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <!-- Popup Content -->
+            <div class="bg-white p-8 rounded-xl shadow-2xl flex flex-col items-center gap-6 relative">
+                <!-- Close Button -->
+                <button
+                    id="closeButton"
+                    class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <!-- QR Code Container -->
+                <div id="qrcode" class="w-64 h-64"></div>
+
+                <!-- 4-Digit Code -->
+                <div id="codeDisplay" class="text-2xl font-bold tracking-wider"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate random 4-digit code
+        function generateCode() {
+            return Math.floor(1000 + Math.random() * 9000).toString();
+        }
+
+        // Initialize variables
+        const popup = document.getElementById('popup');
+        const showQrButton = document.getElementById('showQrButton');
+        const closeButton = document.getElementById('closeButton');
+        const qrcodeDiv = document.getElementById('qrcode');
+        const codeDisplay = document.getElementById('codeDisplay');
+        let qrcode = null;
+
+        // Show popup and generate new QR code
+        showQrButton.addEventListener('click', () => {
+            popup.classList.remove('hidden');
+            
+            // Generate new code
+            const code = generateCode();
+            codeDisplay.textContent = code;
+
+            // Clear previous QR code
+            qrcodeDiv.innerHTML = '';
+
+            // Generate new QR code
+            qrcode = new QRCode(qrcodeDiv, {
+                text: code,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        });
+
+        // Hide popup
+        closeButton.addEventListener('click', () => {
+            popup.classList.add('hidden');
+        });
+
+        // Close popup when clicking outside
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

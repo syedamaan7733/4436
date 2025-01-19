@@ -1,4 +1,5 @@
 const authView = document.querySelector("#auth-check");
+const authUser = JSON.parse(localStorage.getItem("userAuth"));
 authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
   ? `
 
@@ -9,7 +10,7 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="w-8 h-8 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                    src=${authUser.profileImg}
                                     alt="user photo">
                             </button>
                         </div>
@@ -17,10 +18,10 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Neil Sims
+                                    ${authUser.name}
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    neil.sims@flowbite.com
+                                    ${authUser.email}
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
@@ -30,7 +31,7 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
                                         role="menuitem">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="./index.html"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Settings</a>
                                 </li>
@@ -40,8 +41,8 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
                                         role="menuitem">Earnings</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    <a href="#" id="sign-Out"
+                                        class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">Sign out</a>
                                 </li>
                             </ul>
@@ -53,3 +54,8 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
    <button type="button" class="text-white px-5 py-0.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition duration-200 flex items-center justify-center gap-2">Login</button>
    </a>
    `;
+
+document.getElementById("sign-Out").addEventListener("click", () => {
+  localStorage.clear("userAuth");
+  location.reload();
+});
