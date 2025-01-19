@@ -16,10 +16,16 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: ["http://127.0.0.1:5500", "https://4436.vercel.app"], // Replace with your frontend URL
+    origin: [
+      "http://127.0.0.1:5500",
+      "http://127.0.0.1:5501",
+      "https://4436.vercel.app",
+      "https://4436-i4eo.vercel.app",
+    ], // Replace with your frontend URL
     credentials: true, // Allow credentials
   })
 );
+
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
