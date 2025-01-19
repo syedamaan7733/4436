@@ -56,6 +56,7 @@ const userController = {
           name: user.name,
           email: user.email,
         },
+        token: token,
       });
     } catch (error) {
       res.status(400).json({ error: error.message });
