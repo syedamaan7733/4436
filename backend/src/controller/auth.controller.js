@@ -22,6 +22,7 @@ const userController = {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
+      console.log(user);
       if (!user) {
         throw new Error("Invalid login credentials");
       }
