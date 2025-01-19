@@ -120,8 +120,8 @@ async function loginUser(cred) {
     };
 
     const response = await fetch(
-      // "https://4436.vercel.app/api/auth/login",
-      "http://localhost:3000/api/auth/login",
+      "https://4436.vercel.app/api/auth/login",
+      // "http://localhost:3000/api/auth/login",
       requestOption
     );
     if (!response.ok) {
