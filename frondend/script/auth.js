@@ -23,7 +23,9 @@ async function handleLogin(event) {
     const credentials = JSON.stringify({ email, password });
 
     const result = await loginUser(credentials);
+    console.log(result);
 
+    localStorage.setItem("token", JSON.stringify(result.token));
     if (!result.success) {
       alert("Login Failed! Try Again Later");
     } else {
@@ -39,8 +41,8 @@ async function handleLogin(event) {
     localStorage.setItem("userAuth", JSON.stringify(userProfile.data));
 
     userProfile.data.profileImg
-      ? (window.location.href = "index.html")
-      : (window.location.href = "profile.html");
+      ? (window.location.href = "../index.html")
+      : (window.location.href = "./profile.html");
 
     console.log(userProfile.data);
   } catch (error) {
