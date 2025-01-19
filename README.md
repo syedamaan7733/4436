@@ -110,9 +110,10 @@ We welcome contributions to improve SocialSynced! Feel free to submit issues or 
 Walkthrough Picture
 
 ![Login Page for Authentication](image.png)
-
-
-
+![Landing Page](image-1.png)
+![Profle Img](image-3.png)
+![Connection](image-4.png)
+![Discover](image-5.png)
 
 License
 
