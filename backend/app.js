@@ -14,23 +14,16 @@ const app = express();
 connectDB();
 
 // Middleware
-
-app.use({
-  origin: [
-    "http://127.0.0.1:5500",
-    "https://4436.vercel.app",
-    "https://4436-i4eo.vercel.app",
-  ],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "Accept",
-    "X-Requested-With",
-  ],
-});
-
+app.use(
+  cors({
+    origin: [
+      "http://127.0.0.1:5500",
+      "https://4436.vercel.app",
+      "https://4436-i4eo.vercel.app",
+    ], // Replace with your frontend URL
+    credentials: true, // Allow credentials
+  })
+);
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
