@@ -23,9 +23,9 @@ async function handleLogin(event) {
     const credentials = JSON.stringify({ email, password });
 
     const result = await loginUser(credentials);
-    console.log(result);
+    console.log(result.data.token);
 
-    localStorage.setItem("token", JSON.stringify(result.token));
+    localStorage.setItem("token", JSON.stringify(result.data.token));
     if (!result.success) {
       alert("Login Failed! Try Again Later");
     } else {
