@@ -3,153 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitations</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: white;
-            width: 70%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .first {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .first p {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .second {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .second:last-child {
-            border-bottom: none;
-        }
-
-        img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
-        .text {
-            flex: 1;
-            line-height: 1.4;
-        }
-
-        .text p {
-            margin: 5px 0;
-            color: #555;
-            font-size: 14px;
-        }
-
-        .text b {
-            font-size: 16px;
-            color: #333;
-        }
-
-        .click {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            border-radius: 20px;
-            font-size: 14px;
-            padding: 8px 15px;
-            border: none;
-            background-color: white;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        button:hover {
-            border: 1px solid blueviolet;
-            color: blueviolet;
-            background-color: #f9f9f9;
-        }
-    </style>
+    <title>Invitation Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="first">
-            <p>Invitations</p>
-            <p>Show all</p>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="container mx-auto max-w-3xl">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-lg shadow">
+            <h1 class="text-2xl font-bold text-gray-800">Invitations</h1>
+            <button class="text-blue-600 hover:text-blue-800 font-medium">Show all</button>
         </div>
 
-        <div class="second">
-            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team1.png" alt="Profile Picture">
-            <div class="text">
-                <p>Page IT Services and IT consulting</p>
-                <p><b>Khushi Singh</b> invited you to follow I Plus T Solution</p>
-            </div>
-            <div class="click">
-                <button>Ignore</button>
-                <button>Accept</button>
-            </div>
-        </div>
+        <!-- Cards Container -->
+        <div id="cardsContainer" class="space-y-4"></div>
 
-        <div class="second">
-            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team3.png" alt="Profile Picture">
-            <div class="text">
-                <b>Sufal Bala</b>
-                <p>MERN STACK || Next.js || JavaScript ES6, TypeScript, Node.js, Express, EJS || Java ||...</p>
-            </div>
-            <div class="click">
-                <button>Ignore</button>
-                <button>Accept</button>
-            </div>
-        </div>
+        <!-- Pagination -->
+        <div class="mt-6 flex justify-center space-x-2" id="pagination"></div>
+    </div>
 
-        <div class="second">
-            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team1.png" alt="Profile Picture">
-            <div class="text">
-                <b>Rohit Sarkar</b>
-                <p>Cheif Sales officer</p>
-                <p>♾️ Vishwanath J and 6 other mutual connections</p>
-            </div>
-            <div class="click">
-                <button>Ignore</button>
-                <button>Accept</button>
-            </div>
-        </div>
-
-        <div class="second">
-            <img src="https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team3.png" alt="Profile Picture">
-            <div class="text">
-                <p>Page IT Services and IT consulting</p>
-                <p><b>Khushi Singh</b> invited you to follow I Plus T Solution</p>
-            </div>
-            <div class="click">
-                <button>Ignore</button>
-                <button>Accept</button>
-            </div>
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 transform transition-transform duration-300 translate-x-full">
+        <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+            <span id="toastMessage"></span>
         </div>
     </div>
+
+    <script>
+        // Sample data generator
+        const generateInvitations = () => {
+            const titles = ['MERN Stack Developer', 'Full Stack Engineer', 'Software Architect', 'DevOps Engineer', 'UI/UX Designer'];
+            const companies = ['TechCorp', 'Innovation Labs', 'Digital Solutions', 'WebTech', 'Future Systems'];
+            const skills = ['JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'Docker', 'Kubernetes'];
+            
+            return Array.from({ length: 20 }, (_, i) => ({
+                id: i + 1,
+                name: `User ${i + 1}`,
+                title: titles[Math.floor(Math.random() * titles.length)],
+                company: companies[Math.floor(Math.random() * companies.length)],
+                skills: shuffleArray([...skills]).slice(0, 3).join(' • '),
+                image: i % 5=== 0 ? 
+                    'https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team1.png' :
+                    'https://preview.colorlib.com/theme/kindergarten/assets/img/gallery/team3.png',
+                connections: Math.floor(Math.random() * 10) + 1
+            }));
+        };
+
+        // Utility function to shuffle array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // State management
+        const state = {
+            invitations: generateInvitations(),
+            currentPage: 1,
+            itemsPerPage: 5
+        };
+
+        // Show toast message
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-x-full');
+            toast.classList.add('translate-x-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0');
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+
+        // Handle invitation response
+        function handleResponse(id, action) {
+            const card = document.querySelector(`[data-card-id="${id}"]`);
+            
+            if (action === 'accept') {
+                showToast(`Invitation accepted!`);
+                card.classList.add('scale-0');
+            } else {
+                card.classList.add('scale-0');
+            }
+
+            setTimeout(() => {
+                state.invitations = state.invitations.filter(inv => inv.id !== id);
+                renderCards();
+                renderPagination();
+            }, 300);
+        }
+
+        // Render cards
+        function renderCards() {
+            const container = document.getElementById('cardsContainer');
+            const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+            const endIndex = startIndex + state.itemsPerPage;
+            const currentInvitations = state.invitations.slice(startIndex, endIndex);
+
+            container.innerHTML = currentInvitations.map(inv => `
+                <div class="bg-white rounded-lg shadow p-4 transform transition-all duration-300" data-card-id="${inv.id}">
+                    <div class="flex items-start space-x-4">
+                        <img src="${inv.image}" alt="${inv.name}" class="w-16 h-16 rounded-full object-cover">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800">${inv.name}</h3>
+                            <p class="text-gray-600">${inv.title} at ${inv.company}</p>
+                            <p class="text-sm text-gray-500 mt-1">${inv.skills}</p>
+                            <p class="text-sm text-gray-500 mt-1">${inv.connections} mutual connections</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="handleResponse(${inv.id}, 'reject')" 
+                                class="px-4 py-2 text-gray-700 bg-gray-100 rounded hover:bg-gray-200 transition-colors">
+                                Ignore
+                            </button>
+                            <button onclick="handleResponse(${inv.id}, 'accept')" 
+                                class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors">
+                                Accept
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render pagination
+        function renderPagination() {
+            const paginationContainer = document.getElementById('pagination');
+            const pageCount = Math.ceil(state.invitations.length / state.itemsPerPage);
+            
+            paginationContainer.innerHTML = Array.from({ length: pageCount }, (_, i) => `
+                <button 
+                    onclick="changePage(${i + 1})"
+                    class="px-3 py-1 rounded ${state.currentPage === i + 1 ? 
+                        'bg-blue-600 text-white' : 
+                        'bg-white text-gray-700 hover:bg-gray-100'}"
+                >
+                    ${i + 1}
+                </button>
+            `).join('');
+        }
+
+        // Change page
+        function changePage(page) {
+            state.currentPage = page;
+            renderCards();
+        }
+
+        // Initial render
+        renderCards();
+        renderPagination();
+    </script>
 </body>
 </html>
