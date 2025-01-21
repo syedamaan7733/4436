@@ -92,8 +92,8 @@ async function registerUser(user) {
     };
 
     const response = await fetch(
-      // "https://4436.vercel.app/api/auth/register", // Replace with your API endpoint
-      "http://localhost:3000/api/auth/login",
+      "https://4436.vercel.app/api/auth/register", // Replace with your API endpoint
+      // "http://localhost:3000/api/auth/login",
 
       requestOptions
     );
@@ -122,8 +122,8 @@ async function loginUser(cred) {
     };
 
     const response = await fetch(
-      // "https://4436.vercel.app/api/auth/login",
-      "http://localhost:3000/api/auth/login",
+      "https://4436.vercel.app/api/auth/login",
+      // "http://localhost:3000/api/auth/login",
       requestOption
     );
     if (!response.ok) {
