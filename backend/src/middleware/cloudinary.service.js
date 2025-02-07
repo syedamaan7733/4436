@@ -17,6 +17,9 @@ cloudinary.config({
 // Utility function for uploading to Cloudinary
 const uploadToCloudinary = (fileBuffer, folder) => {
   return new Promise((resolve, reject) => {
+    console.log("hey");
+    console.log(fileBuffer);
+
     const uploadStream = cloudinary.uploader.upload_stream(
       { folder },
       (error, result) => {

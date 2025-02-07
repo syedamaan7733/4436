@@ -12,9 +12,9 @@ const {
 // PATCH route for updating user data
 router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
   try {
-    const { name, email, hobby, bio } = req.body;
+    const { name, email, hobbies, bio } = req.body;
     const userId = req.user.userId;
-    console.log(name);
+    console.log(userId);
 
     // Validate email if provided
     if (email && !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
@@ -22,12 +22,12 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
     }
 
     // Parse hobbies if provided
-    let parsedHobby = null;
-    if (hobby) {
+    let parsedhobbies = null;
+    if (hobbies) {
       try {
-        parsedHobby = JSON.parse(hobby);
+        parsedhobbies = JSON.parse(hobbies);
       } catch (error) {
-        return res.status(400).json({ error: "Invalid hobby format" });
+        return res.status(400).json({ error: "Invalid hobbies format" });
       }
     }
 
@@ -54,7 +54,7 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
     // Update user fields
     user.name = name || user.name;
     user.email = email || user.email;
-    user.hobby = parsedHobby || user.hobby;
+    user.hobbies = parsedhobbies || user.hobbies;
     user.bio = bio || user.bio;
     user.profileImg = profileImgUrl;
 
@@ -67,7 +67,7 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        hobby: user.hobby,
+        hobbies: user.hobbies,
         bio: user.bio,
         profileImg: user.profileImg,
       },

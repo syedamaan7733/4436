@@ -15,6 +15,7 @@ const auth = async (req, res, next) => {
   try {
     // Get token from either source
     const token = getTokenFromRequest(req);
+    console.log(token);
 
     if (!token) {
       return res.status(401).json({

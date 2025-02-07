@@ -24,6 +24,7 @@ async function handleLogin(event) {
 
     const result = await loginUser(credentials);
     console.log(result.data.token);
+    console.log(result);
 
     localStorage.setItem("token", JSON.stringify(result.data.token));
     if (!result.success) {
