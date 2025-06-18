@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const getTokenFromRequest = (req) => {
+  
   // Check Authorization header first (for localStorage implementation)
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.startsWith("Bearer ")) {
@@ -15,7 +16,6 @@ const auth = async (req, res, next) => {
   try {
     // Get token from either source
     const token = getTokenFromRequest(req);
-    console.log(token);
 
     if (!token) {
       return res.status(401).json({

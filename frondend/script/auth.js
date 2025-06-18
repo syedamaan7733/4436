@@ -14,6 +14,8 @@ function toggleForms() {
   }
 }
 
+const BASE_URL = "http://localhost:3000/api";
+
 async function handleLogin(event) {
   try {
     event.preventDefault();
@@ -23,17 +25,19 @@ async function handleLogin(event) {
     const credentials = JSON.stringify({ email, password });
 
     const result = await loginUser(credentials);
-    console.log(result.data.token);
-    console.log(result);
 
-    localStorage.setItem("token", JSON.stringify(result.data.token));
     if (!result.success) {
       alert("Login Failed! Try Again Later");
     } else {
       alert("Logged in successfully.");
     }
+
+    const authToken = result.data.token;
+    localStorage.setItem("token", JSON.stringify(authToken));
     const id = result.data.user.id;
-    const userProfile = await getProfile();
+    const userProfile = await getProfile(authToken);
+    console.log("🚀 ~ handleLogin ~ userProfile:", userProfile);
+
     if (!userProfile.success) {
       alert("Invalid User Login Again");
       return;
@@ -44,8 +48,6 @@ async function handleLogin(event) {
     userProfile.data.profileImg
       ? (window.location.href = "../index.html")
       : (window.location.href = "./profile.html");
-
-    console.log(userProfile.data);
   } catch (error) {
     console.error("Error:", error);
     return { success: false, message: error.message };
@@ -92,12 +94,7 @@ async function registerUser(user) {
       body: JSON.stringify(user),
     };
 
-    const response = await fetch(
-      "https://4436.vercel.app/api/auth/register", // Replace with your API endpoint
-      // "http://localhost:3000/api/auth/login",
-
-      requestOptions
-    );
+    const response = await fetch(`${BASE_URL}/auth/register`, requestOptions);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -122,11 +119,7 @@ async function loginUser(cred) {
       body: cred,
     };
 
-    const response = await fetch(
-      "https://4436.vercel.app/api/auth/login",
-      // "http://localhost:3000/api/auth/login",
-      requestOption
-    );
+    const response = await fetch(`${BASE_URL}/auth/login`, requestOption);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -138,12 +131,13 @@ async function loginUser(cred) {
   }
 }
 
-async function getProfile() {
+async function getProfile(token) {
   try {
-    const result = await fetch("https://4436.vercel.app/api/auth/profile", {
+    const result = await fetch(`${BASE_URL}/auth/profile`, {
       method: "GET",
       credentials: "include",
       headers: {
+        authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });

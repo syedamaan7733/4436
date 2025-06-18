@@ -6,7 +6,7 @@ const userController = {
   register: async (req, res) => {
     try {
       const { name, email, password, code } = req.body;
-      console.log(code);
+  
       const hashedPassword = await bcrypt.hash(password, 10);
       const user = new User({ name, email, password: hashedPassword, code });
       await user.save();
@@ -22,7 +22,7 @@ const userController = {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
-      console.log(user);
+
       if (!user) {
         throw new Error("Invalid login credentials");
       }
@@ -68,9 +68,9 @@ const userController = {
   getProfile: async (req, res) => {
     try {
       const user = await User.findById(req.user.userId).select("-password");
-      res.json(user);
+      return res.json(user);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      return res.status(500).json({ error: error.message });
     }
   },
 
