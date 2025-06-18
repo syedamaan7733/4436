@@ -10,7 +10,10 @@ authView.innerHTML = JSON.parse(localStorage.getItem("userAuth"))
                                 aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="w-8 h-8 rounded-full"
-                                    src=${authUser.profileImg}
+                                    src=${
+                                      authUser.profileImg ||
+                                      `https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=`
+                                    }
                                     alt="user photo">
                             </button>
                         </div>

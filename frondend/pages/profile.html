@@ -112,7 +112,7 @@
                             </label>
                         </div>
                         <div class="">
-                            <a class="text-stone-300 hover:text-blue-600 cursor-pointer">Skip for now</a>
+                            <a id="skipBtn" class="text-stone-300 hover:text-blue-600 cursor-pointer">Skip for now</a>
                         </div>
                     </div>
 
@@ -194,7 +194,8 @@
 
     <script>
         const userAuth = JSON.parse(localStorage.getItem('userAuth'))
-
+        // export const BASE_URL = "http://localhost:3000/api";
+        export const BASE_URL = `https://4436.vercel.app/api`;
         document.addEventListener("DOMContentLoaded", (e) => {
             document.getElementById('name').value = userAuth.name
             document.getElementById('email').value = userAuth.email
@@ -376,8 +377,7 @@
 
             async saveProfile(formData) {
                 return fetch(
-                    // 'https://4436.vercel.app/api/profile/update',
-                    "http://localhost:3000/api/profile/update",
+                    `${BASE_URL}/profile/update`,
 
 
                     {
@@ -499,6 +499,11 @@
                 };
             }
 
+            skipForNow(e) {
+                event.preventDefault();
+                window.location.href = "../index.html";
+            }
+
 
         }
 
@@ -514,6 +519,8 @@
         document.querySelectorAll('input, textarea').forEach(element => {
             element.addEventListener('input', autoSave);
         });
+
+        document.getElementById('skipBtn').addEventListener('click', profileManager.skipForNow)
     </script>
 </body>
 
