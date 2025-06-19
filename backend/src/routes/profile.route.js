@@ -44,6 +44,7 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
           req.file.buffer,
           "user_profiles"
         );
+
       } catch (error) {
         console.error("Cloudinary upload error:", error);
         return res.status(500).json({ error: "Failed to upload image" });
@@ -60,7 +61,8 @@ router.patch("/update", auth, upload.single("profileImg"), async (req, res) => {
     // Save the updated user
     await user.save();
 
-    res.json({
+    res.status(200).json({
+      success: true,
       message: "User profile updated successfully",
       user: {
         id: user._id,

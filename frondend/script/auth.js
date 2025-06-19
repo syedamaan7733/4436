@@ -14,7 +14,7 @@ function toggleForms() {
   }
 }
 
-//  const BASE_URL = "http://localhost:3000/api";
+// const BASE_URL = "http://localhost:3000/api";
 const BASE_URL = `https://4436.vercel.app/api`;
 
 async function handleLogin(event) {
@@ -37,7 +37,7 @@ async function handleLogin(event) {
     localStorage.setItem("token", JSON.stringify(authToken));
     const id = result.data.user.id;
     const userProfile = await getProfile(authToken);
-    console.log("🚀 ~ handleLogin ~ userProfile:", userProfile);
+
 
     if (!userProfile.success) {
       alert("Invalid User Login Again");

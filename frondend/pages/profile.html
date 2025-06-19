@@ -194,8 +194,10 @@
 
     <script>
         const userAuth = JSON.parse(localStorage.getItem('userAuth'))
-        //  const BASE_URL = "http://localhost:3000/api";
-         const BASE_URL = `https://4436.vercel.app/api`;
+
+        // const BASE_URL = "http://localhost:3000/api";
+        const BASE_URL = `https://4436.vercel.app/api`;
+
         document.addEventListener("DOMContentLoaded", (e) => {
             document.getElementById('name').value = userAuth.name
             document.getElementById('email').value = userAuth.email
@@ -320,14 +322,13 @@
                     // Save the profile using the saveProfile method
                     const response = await this.saveProfile(formData);
                     // const authUser = JSON.parse(localStorage.getItem("userAuth"));
-                    if (response.ok) {
-                        const result = await response.json();
-                        localStorage.setItem(JSON.stringify(response.user))
-                        this.showNotification('Profile saved successfully!', 'success');
-                        // window.location.href = "../index.html"
-                        this.saveToLocalStorage();
+                    const userProfile = localStorage.getItem("userProfile")
+                    if (response.success) {
+                        localStorage.setItem('userProfile', JSON.stringify(response.user))
+                        this.showNotification('Profile saved successfully÷!', 'success');
+                        window.location.href = "../index.html"
+                        // this.saveToLocalStorage();
                     } else {
-                        const error = await response.json();
                         this.showNotification(error.message || 'Failed to save profile', 'error');
                     }
                 } catch (error) {
@@ -387,7 +388,7 @@
                             Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`
                         },
                         body: formData
-                    });
+                    }).then(data => data.json());
             }
 
             saveToLocalStorage() {
@@ -396,7 +397,7 @@
                     email: document.getElementById('email').value,
                     bio: document.getElementById('bio').value,
                     hobbies: this.hobbiesArray,
-                    profilePicture: document.getElementById('preview').src
+
                 };
                 localStorage.setItem('userProfile', JSON.stringify(profile));
             }
@@ -461,7 +462,7 @@
 
             showNotification(message, type = 'success') {
                 const notification = document.createElement('div');
-                notification.className = `notification ${type === 'success' ? 'bg-green-500' : 'bg-red-500'
+                notification.className = `notification ${type === 'success' ? 'bg-green-600' : 'bg-red-700'
                     }`;
                 notification.innerHTML = `
                     <div class="flex items-center gap-2">
@@ -503,7 +504,6 @@
                 event.preventDefault();
                 window.location.href = "../index.html";
             }
-
 
         }
 
